@@ -31,10 +31,9 @@ jobs:
         run: |
           git config user.name "Rhomaedy1201"
           git config user.email "57169929+Rhomaedy1201@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "Tidak ada perubahan."
-          else
-            git commit -m "chore: daily update $(date -u +%F)"
-            git push
-          fi
+          for i in 1 2 3; do
+            echo "- $(date -u +'%Y-%m-%d %H:%M:%S UTC') run $i" >> "log/$(date -u +%Y-%m).md"
+            git add -A
+            git commit -m "chore: daily update $(date -u +%F) #$i"
+          done
+          git push
